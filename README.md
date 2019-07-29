@@ -6,7 +6,7 @@ This library is refer to OVO documentation version 1.2
 
 ### Install
 ```bash
-$ npm install -g ovo-payment
+$ npm install ovo-payment
 ```
 
 ### Basic Example for Push to Pay
