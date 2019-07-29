@@ -1,0 +1,32 @@
+{
+  "name": "ovo-payment",
+  "version": "1.0.0",
+  "description": "OVO payment wrapper class for Total.js",
+  "main": "src/ovo.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aalfiann/ovo-payment.git"
+  },
+  "keywords": [
+    "totaljs",
+    "ovo",
+    "payment"
+  ],
+  "author": "M ABD AZIZ ALFIAN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aalfiann/ovo-payment/issues"
+  },
+  "homepage": "https://github.com/aalfiann/ovo-payment#readme",
+  "dependencies": {
+    "total.js": "^3.2.4",
+    "unirest": "^0.6.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
