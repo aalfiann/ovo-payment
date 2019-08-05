@@ -39,7 +39,7 @@ ovo.type('push')
     .phone('0856')          // your phone must be registered in OVO
     .merchantInvoice('xxx') // should be unique in every request
     .send(function(response){
-        console.log(response);
+        console.log(response.body);
     });
 ```
 
@@ -53,7 +53,7 @@ ovo.type('reversal')
     .merchantInvoice('xxx') // your previous invoice
     .referenceNumber('xxx') // your previous referenceNumber
     .send(function(response){
-        console.log(response);
+        console.log(response.body);
     });
 ```
 
@@ -67,9 +67,12 @@ ovo.type('reversal')
     .referenceNumber('xxx') // your previous referenceNumber
     .batchNo('xxx')         // your previous batchNo
     .send(function(response){
-        console.log(response);
+        console.log(response.body);
     });
 ```
+
+### Response
+We use [unirest](https://unirest.io) for request call to endpoint OVO
 
 ### Unit Test
 Unit test is using **mocha**
