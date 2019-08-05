@@ -3,7 +3,7 @@
  * @version 1.2     this is refer to tech doc version from OVO
  */
 'use strict';
-require('total.js');
+var crypto = require('crypto');
 const unirest = require('unirest');
 const uuidv4 = require('uuid/v4');
 const _hmac = Symbol('_hmac');
@@ -78,7 +78,7 @@ class OVO {
      * @return {string}
      */
     [_hmac]() {
-        return (this.app_id+this.random).sha256(this.app_key);
+        return crypto.createHash('sha256').update(this.app_id+this.random+this.app_key,'utf8').digest('hex');
     }
 
     /**

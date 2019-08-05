@@ -1,7 +1,7 @@
 {
   "name": "ovo-payment",
-  "version": "1.0.1",
-  "description": "OVO payment wrapper class for Total.js",
+  "version": "1.0.2",
+  "description": "OVO payment wrapper class for NodeJS",
   "main": "src/ovo.js",
   "scripts": {
     "test": "mocha"
@@ -20,9 +20,8 @@
   "bugs": {
     "url": "https://github.com/aalfiann/ovo-payment/issues"
   },
-  "homepage": "https://github.com/aalfiann/ovo-payment#readme",
+  "homepage": "https://github.com/aalfiann/ovo-payment",
   "dependencies": {
-    "total.js": "^3.2.4",
     "unirest": "^0.6.0",
     "uuid": "^3.3.2"
   },
