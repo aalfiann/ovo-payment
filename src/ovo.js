@@ -3,7 +3,7 @@
  * @version 1.2     this is refer to tech doc version from OVO
  */
 'use strict';
-var crypto = require('crypto');
+const crypto = require('crypto');
 const unirest = require('unirest');
 const uuidv4 = require('uuid/v4');
 const _hmac = Symbol('_hmac');
