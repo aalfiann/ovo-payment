@@ -1,6 +1,6 @@
 {
   "name": "ovo-payment",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "OVO payment wrapper class for NodeJS",
   "main": "src/ovo.js",
   "scripts": {
@@ -22,8 +22,7 @@
   },
   "homepage": "https://github.com/aalfiann/ovo-payment",
   "dependencies": {
-    "unirest": "^0.6.0",
-    "uuid": "^3.3.2"
+    "unirest": "^0.6.0"
   },
   "devDependencies": {
     "mocha": "^6.2.0"

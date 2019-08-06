@@ -5,9 +5,9 @@
 'use strict';
 const crypto = require('crypto');
 const unirest = require('unirest');
-const uuidv4 = require('uuid/v4');
 const _hmac = Symbol('_hmac');
 const _isEmptyConfig = Symbol('_isEmptyConfig');
+const _randomizer = Symbol('_randomizer');
 const _autoReferenceNumber = Symbol('_autoReferenceNumber');
 const _autoBatchNo = Symbol('_autoBatchNo');
 
@@ -26,8 +26,8 @@ class OVO {
      *      tid: "",
      *      mid: "",
      *      storeCode: "",
-     *      url: "",            >> optional, if empty then will use api stagging url address
-     *      random: ""          >> optional, if empty then hmac will use uuidv4()
+     *      mode: "",           >> [optional] staging|production, if empty then will use api staging url address
+     *      random: ""          >> [optional] if empty then hmac will use _randomizer()
      * }
      */
     constructor(config) {
@@ -37,8 +37,14 @@ class OVO {
                 this[key] = config[key];
             }
         }
-        if(!config.url) {
+        if(!config.mode) {
             this.url = "https://api.byte-stack.net/pos";
+        } else {
+            if(config.mode.toString().toLowerCase() == 'production'){
+                this.url = "https://api.ovo.id/pos";
+            } else {
+                this.url = "https://api.byte-stack.net/pos";
+            }
         }
     }
 
@@ -50,6 +56,22 @@ class OVO {
     [_isEmptyConfig](name) {
         if(this[name]===undefined || this[name]===null || this[name]==='') return true;
         return false;
+    }
+
+
+    /**
+     * Generate random number and char
+     * @param {int} length
+     * @return {string} 
+     */
+    [_randomizer](length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
     }
 
     /**
@@ -211,7 +233,7 @@ class OVO {
      * @return {callback}
      */
     send(callback){
-        if(this[_isEmptyConfig]('random')) this.random = uuidv4();
+        if(this[_isEmptyConfig]('random')) this.random = this[_randomizer](10);
         unirest.post(this.url)
         .headers({
             'Content-Type': 'application/json',

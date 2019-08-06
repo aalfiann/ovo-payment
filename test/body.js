@@ -8,8 +8,8 @@ var config = {
     tid: "xxx",
     mid: "xxx",
     storeCode: "1234",
-    url: "",            // optional, if empty then will use api stagging url address
-    random: ""          // optional, if empty then hmac will use uuidv4()
+    mode: "",           // [optional] staging|production, if empty then will use api staging url address
+    random: ""          // [optional] if empty then hmac will use _randomizer()
 }
 
 function isJsonObject(json) {

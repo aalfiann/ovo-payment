@@ -16,6 +16,7 @@ $ npm install ovo-payment
 ```
 
 ### Set Config
+Note: config has been changed since 1.1.0 version.
 ```javascript
 var OVO = require('ovo-payment');
 
@@ -26,8 +27,8 @@ var config = {
     tid: "xxx",
     mid: "xxx",
     storeCode: "1234",
-    url: "",            // optional, if empty then will use api stagging url address
-    random: ""          // optional, if empty then hmac will use uuidv4()
+    mode: "",           // [optional] staging|production, if empty then will use api staging url address
+    random: ""          // [optional] if empty then hmac will use _randomizer()
 }
 ```
 
@@ -37,7 +38,7 @@ var ovo = new OVO(config);
 ovo.type('push')
     .amount(5000)
     .phone('0856')          // your phone must be registered in OVO
-    .merchantInvoice('xxx') // should be unique in every request
+    .merchantInvoice('xxx') // you can not use same invoice number if the previous request was failed or canceled
     .send(function(response){
         console.log(response.body);
     });
@@ -50,7 +51,7 @@ var ovo = new OVO(config);
 ovo.type('reversal')
     .amount(5000)
     .phone('0856')          // your phone must be registered in OVO
-    .merchantInvoice('xxx') // your previous invoice
+    .merchantInvoice('xxx') // your previous invoice number
     .referenceNumber('xxx') // your previous referenceNumber
     .send(function(response){
         console.log(response.body);
@@ -60,10 +61,10 @@ ovo.type('reversal')
 ### Example for Void Push to Pay
 ```javascript
 var ovo = new OVO(config);
-ovo.type('reversal')
+ovo.type('void')
     .amount(5000)
     .phone('0856')          // your phone must be registered in OVO
-    .merchantInvoice('xxx') // your previous invoice
+    .merchantInvoice('xxx') // your previous invoice number
     .referenceNumber('xxx') // your previous referenceNumber
     .batchNo('xxx')         // your previous batchNo
     .send(function(response){

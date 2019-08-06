@@ -8,8 +8,8 @@ var config = {
     tid: "xxx",
     mid: "xxx",
     storeCode: "1234",
-    url: "",            // optional, if empty then will use api stagging url address
-    random: ""          // optional, if empty then hmac will use uuidv4()
+    mode: "",           // [optional] staging|production, if empty then will use api staging url address
+    random: ""          // [optional] if empty then hmac will use _randomizer()
 }
 
 function isJsonObject(json) {
@@ -87,9 +87,20 @@ describe("ovo-payment-config-test", function() {
         assert.notEqual(ovo.random, '');
     });
 
-    it('empty config.url should using url staging', function(){
+    it('empty config.mode should using url staging', function(){
         var ovo = new OVO(config);
         assert.equal(ovo.url,'https://api.byte-stack.net/pos');
+    });
+
+    it('config.mode staging should using url staging', function(){
+        var ovo = new OVO(config);
+        assert.equal(ovo.url,'https://api.byte-stack.net/pos');
+    });
+
+    it('config.mode production should using url production', function(){
+        config.mode = 'production';
+        var ovo = new OVO(config);
+        assert.equal(ovo.url,'https://api.ovo.id/pos');
     });
 
 });
