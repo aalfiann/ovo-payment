@@ -10,7 +10,7 @@ OVO payment wrapper class for NodeJS
 ## Usage
 This library is refer to OVO documentation version 1.2
 
-### Install
+### Install using NPM
 ```bash
 $ npm install ovo-payment
 ```
@@ -76,7 +76,7 @@ ovo.type('void')
 We use [unirest](https://unirest.io) for request call to endpoint OVO
 
 ### Unit Test
-Unit test is using **mocha**
+If you want to playing around with unit test
 ```
 npm test
 ```

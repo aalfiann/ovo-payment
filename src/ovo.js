@@ -32,19 +32,23 @@ class OVO {
      */
     constructor(config) {
         this.body = {};
-        for(var key in config) {
-            if(config.hasOwnProperty(key)) {
-                this[key] = config[key];
+        if(typeof config === 'object' && config.constructor === Object){
+            for(var key in config) {
+                if(config.hasOwnProperty(key)) {
+                    this[key] = config[key];
+                }
             }
-        }
-        if(!config.mode) {
-            this.url = "https://api.byte-stack.net/pos";
-        } else {
-            if(config.mode.toString().toLowerCase() == 'production'){
-                this.url = "https://api.ovo.id/pos";
-            } else {
+            if(!config.mode) {
                 this.url = "https://api.byte-stack.net/pos";
+            } else {
+                if(config.mode.toString().toLowerCase() == 'production'){
+                    this.url = "https://api.ovo.id/pos";
+                } else {
+                    this.url = "https://api.byte-stack.net/pos";
+                }
             }
+        } else {
+            throw new Error('Config must be an object type!');
         }
     }
 
@@ -233,6 +237,7 @@ class OVO {
      * @return {callback}
      */
     send(callback){
+        if(this[_isEmptyConfig]('url')) throw new Error('url endpoint is required to make request!');
         if(this[_isEmptyConfig]('random')) this.random = this[_randomizer](10);
         unirest.post(this.url)
         .headers({

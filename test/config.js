@@ -30,6 +30,12 @@ describe("ovo-payment-config-test", function() {
         assert.equal(isJsonObject(config), true);
     });
 
+    it('configuration must be hasOwnProperty',function(){
+        const config = Object.create({name: 'inherited'})
+        var ovo = new OVO(config);
+        assert.equal(isJsonObject(ovo), true);
+    });
+
     it("config should have required app_id", function() {
         var ovo = new OVO(config);
         assert.notEqual(ovo.app_id, undefined);
@@ -72,6 +78,15 @@ describe("ovo-payment-config-test", function() {
         assert.notEqual(ovo.url, '');
     });
 
+    it("config with random value", function() {
+        var ovo = new OVO(config);
+        ovo.random = '123';    
+        ovo.type('push').amount(5000).phone('0856').merchantInvoice('xxx').send(function(response){
+
+        });
+        assert.equal(ovo.random, '123');
+    });
+
     it("empty config random is always empty if run with no send method", function() {
         var ovo = new OVO(config);
         ovo.type('push').amount(5000).phone('0856').merchantInvoice('xxx').getBody();
@@ -101,6 +116,16 @@ describe("ovo-payment-config-test", function() {
         config.mode = 'production';
         var ovo = new OVO(config);
         assert.equal(ovo.url,'https://api.ovo.id/pos');
+    });
+
+    it('config.mode with typo will using url staging', function(){
+        config.mode = 'productionss';
+        var ovo = new OVO(config);
+        assert.equal(ovo.url,'https://api.byte-stack.net/pos');
+    });
+
+    it('undefined config will throw an error',function(){
+        assert.throws(function(){new OVO(undefined)},Error,'Error thrown');
     });
 
 });

@@ -51,14 +51,14 @@ describe("ovo-payment-body-test", function() {
 
     it('body reversal should have correct type and processingCode', function(){
         var ovo = new OVO(config);
-        var body = ovo.type('reversal').amount(5000).phone('0856').merchantInvoice('xxx').getBody();
+        var body = ovo.type('reversal').amount(5000).phone('0856').merchantInvoice('xxx').referenceNumber('xxx').getBody();
         assert.equal(body.type, '0400');
         assert.equal(body.processingCode, '040000');
     });
 
     it('body void should have correct type and processingCode', function(){
         var ovo = new OVO(config);
-        var body = ovo.type('void').amount(5000).phone('0856').merchantInvoice('xxx').getBody();
+        var body = ovo.type('void').amount(5000).phone('0856').merchantInvoice('xxx').referenceNumber('xxx').batchNo('xxx').getBody();
         assert.equal(body.type, '0200');
         assert.equal(body.processingCode, '020040');
     });
