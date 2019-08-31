@@ -4,6 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/ovo-payment.svg?style=flat-square)](https://www.npmjs.org/package/ovo-payment)
 [![Build Status](https://travis-ci.org/aalfiann/midtrans-payment.svg?branch=master)](https://travis-ci.org/aalfiann/ovo-payment)
 [![Coverage Status](https://coveralls.io/repos/github/aalfiann/ovo-payment/badge.svg?branch=master)](https://coveralls.io/github/aalfiann/ovo-payment?branch=master)
+[![Known Vulnerabilities](https://snyk.io//test/github/aalfiann/ovo-payment/badge.svg?targetFile=package.json)](https://snyk.io//test/github/aalfiann/ovo-payment?targetFile=package.json)
 ![NPM download/month](https://img.shields.io/npm/dm/ovo-payment.svg)
 ![NPM download total](https://img.shields.io/npm/dt/ovo-payment.svg)  
 OVO payment wrapper class for NodeJS
